@@ -41,10 +41,8 @@ class Dfa :
                     ans.append(string + symbol)
             return ans
 
-    def get_lang(self):
-        self.accepted_strings = [string for string in self.generate(len(self.states)) if self.accept_string(string)]
-    def set_input_string(self):
-        self.input_string = input()
+    def get_lang(self,n):
+        self.accepted_strings = [string for string in self.generate(n) if self.accept_string(string)]
 
 
     def isempty(self):
@@ -240,7 +238,37 @@ class Nfa:
     def set_transition(self,l):
         self.transition = l
 
-  
+Language= Dfa(
+    ['q0', 'q1', 'q2', 'q3'],
+     ['a', 'b'],
+      'q0',
+       ['q3'],
+    {
+        'q0': {
+            'a': 'q1',
+            'b': 'q0'
+        },
+        'q1': {
+            'a': 'q2',
+            'b': 'q0'
+        },
+        'q2': {
+            'a': 'q3',
+            'b': 'q0'
+        },
+        'q3': {
+            'a': 'q3',
+            'b': 'q0'
+        }
+    }
+    )  
+print(Language.states)
+print(Language.alphabets)
+print(Language.start_state)
+print(Language.accept_states)
+print(Language.transition)
+Language.get_lang(8)    
+print(Language.accepted_strings)    
 
 
                     
